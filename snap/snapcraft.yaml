@@ -1,0 +1,38 @@
+name: ros-markers-james
+version: '1.0'
+grade: stable
+confinement: strict
+summary: ROS App Snap
+description: Shows how to use visualization markers to send basic shapes
+passthrough:
+  base: core18-ros
+
+apps:
+  launch-project:
+    command: run-system
+    plugs: [network, network-bind]
+  run:
+    command: run-system
+    daemon: simple
+    restart-condition: never
+
+parts:
+  ros-app:
+    plugin: catkin
+    rosdistro: kinetic
+    include-roscore: false
+    underlay:
+      # Build-time location of the underlay
+      build-path: $SNAPCRAFT_PART_INSTALL/opt/ros/kinetic
+
+      # Run-time location of the underlay
+      run-path: /opt/ros/kinetic
+    catkin-packages:
+      - visualization_marker_tutorials
+    build-packages:
+      - libc6
+
+  run-system:
+    plugin: dump
+    stage: [bin/run-system]
+    prime: [bin/run-system]
