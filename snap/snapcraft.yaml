@@ -8,6 +8,9 @@ passthrough:
   base: core18-ros
 
 apps:
+  ui:
+    command: run-viz
+    plugs: [network, network-bind]
   launch-project:
     command: run-system
     plugs: [network, network-bind]
@@ -34,5 +37,9 @@ parts:
 
   run-system:
     plugin: dump
-    stage: [bin/run-system]
-    prime: [bin/run-system]
+    stage:
+      - bin/run-system
+      - bin/run-viz
+    prime: 
+      - bin/run-system
+      - bin/run-viz

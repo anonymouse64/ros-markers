@@ -15,16 +15,19 @@ arm64)
 	;;
 esac
 
-export ROS_BASE=$SNAP/ros-base
+export ROS_BASE=/opt/ros/kinetic
+export ROS_APP=$SNAP/opt/ros/kinetic
 
 # Add ros-base to the PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages:$ROS_BASE/usr/lib/python2.7/dist-packages
 
 # Add ros-base to LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_BASE/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_BASE/lib/$TRIPLET
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_BASE/usr/lib
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_BASE/usr/lib/$TRIPLET
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_APP/lib:$ROS_BASE/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_APP/lib/$TRIPLET:$ROS_BASE/lib/$TRIPLET
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_APP/usr/lib:$ROS_BASE/usr/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROS_APP/usr/lib/$TRIPLET:$ROS_BASE/usr/lib/$TRIPLET
 
-rosrun using_markers basic_shapes
-rosrun rviz rviz
+export PATH=$PATH:$ROS_APP/bin:$ROS_BASE/bin
+
+/opt/ros/kinetic/bin/rosrun visualization_marker_tutorials basic_shapes
+/opt/ros/kinetic/bin/rosrun rviz rviz
