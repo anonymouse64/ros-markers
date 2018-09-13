@@ -30,6 +30,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SNAP/usr/lib:$SNAP/usr/lib/$TRIPLET
 
 export PATH=$PATH:$ROS_APP/bin:$ROS_BASE/bin
 
-#/opt/ros/kinetic/bin/rosrun visualization_marker_tutorials basic_shapes
-#/opt/ros/kinetic/bin/rosrun rviz rviz
+# Set up the defaults for the master node
+export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://localhost:11311
+
+# Set up the ROS env
+source $ROS_BASE/setup.bash
+
 rviz

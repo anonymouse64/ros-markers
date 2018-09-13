@@ -8,11 +8,11 @@ passthrough:
   base: core18-ros-james
 
 apps:
-  ui:
-    command: run-viz
-    plugs: [network, network-bind, unity7, opengl]
-  launch-project:
+  run:
     command: run-system
+    plugs: [network, network-bind, unity7, opengl]
+  viz:
+    command: run-viz
     plugs: [network, network-bind, unity7, opengl]
 
 parts:
