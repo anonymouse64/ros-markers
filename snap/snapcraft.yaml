@@ -13,7 +13,7 @@ apps:
     plugs: [network, network-bind, unity7, opengl]
   viz:
     command: run-viz
-    plugs: [network, network-bind, unity7, opengl]
+    plugs: [network, network-bind, unity7, opengl, dbus]
 
 parts:
   ros-app:
